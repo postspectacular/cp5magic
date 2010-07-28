@@ -1,0 +1,9 @@
+syntax: glob
+
+bin
+dist
+metrics
+
+.DS_Store
+*.class
+

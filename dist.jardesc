@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="MacRoman" standalone="no"?>
+<jardesc>
+    <jar path="controlp5builder/dist/cp5utils.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/controlp5builder/dist.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{FloatRangeBuilder.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{ButtonBuilder.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{Range.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIElement.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIType.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIElementBuilder.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIController.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIConfiguration.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{CheckboxBuilder.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{RadioBuilder.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{IntegerRangeBuilder.java"/>
+        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{FloatRangeMinMaxBuilder.java"/>
+    </selectedElements>
+</jardesc>
