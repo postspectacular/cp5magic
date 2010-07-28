@@ -50,11 +50,11 @@ public class AnnoTest extends PApplet {
     @GUIElement
     public String btRestart = "restart";
 
-    @GUIElement(label = "columns", builder = IntegerRangeBuilder.class)
+    @GUIElement(label = "columns")
     @Range(min = 1, max = 30)
     public int cols = 10;
 
-    @GUIElement(label = "ratio", builder = FloatRangeBuilder.class)
+    @GUIElement(label = "ratio")
     @Range(min = 0.01f, max = 1f)
     public float ratio = 0.5f;
 
@@ -74,10 +74,9 @@ public class AnnoTest extends PApplet {
     private void initGUI() {
         ControlP5 cp5 = new ControlP5(this);
         gui = new GUIManager(cp5);
-        gui.addDefaultMappings();
         gui.addMapping(toxi.util.datatypes.FloatRange.class,
                 new FloatRangeMinMaxBuilder());
-        gui.createControllers(this, 20, 20,null);        
+        gui.createControllers(this);        
         gui.addListenerFor("isActive", "toggleActive", this);
         gui.addListenerFor("btRestart", "doRestart", this);
     }
@@ -86,10 +85,6 @@ public class AnnoTest extends PApplet {
         e.controller().setLabel(e.value()>0 ? "enabled" : "disabled");
     }
     
-    public void keyPressed() {
-
-    }
-
     public void setup() {
         size(400, 400);
         options.add("png");

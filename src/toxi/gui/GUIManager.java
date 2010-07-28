@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import toxi.geom.Vec2D;
+import toxi.util.datatypes.FloatRange;
+import toxi.util.datatypes.IntegerRange;
 import controlP5.ControlEvent;
 import controlP5.ControlListener;
 import controlP5.ControlP5;
@@ -46,15 +48,24 @@ public class GUIManager {
             new HashMap<Class<?>, GUIElementBuilder>();
 
     public GUIManager(ControlP5 gui) {
+        this(gui,true);
+    }
+    
+    public GUIManager(ControlP5 gui, boolean useDefaults) {
         this.gui = gui;
+        if (useDefaults) {
+            addDefaultMappings();
+        }
     }
 
     public void addDefaultMappings() {
         addMapping(Boolean.class, new CheckboxBuilder());
-        addMapping(Integer.class, new IntegerRangeBuilder());
+        addMapping(Integer.class, new IntRangeBuilder());
         addMapping(Float.class, new FloatRangeBuilder());
         addMapping(Collection.class, new RadioBuilder());
         addMapping(String.class, new ButtonBuilder());
+        addMapping(FloatRange.class, new FloatRangeMinMaxBuilder());
+        addMapping(IntegerRange.class, new IntRangeMinMaxBuilder());
     }
 
     public void addListenerFor(String id, final String name,
@@ -134,6 +145,10 @@ public class GUIManager {
         }
     }
 
+    public void createControllers(Object context) {
+        createControllers(context, null);
+    }
+    
     public void createControllers(Object context, Tab tab) {
         int x, y;
         GUIConfiguration config =
@@ -143,7 +158,7 @@ public class GUIManager {
             y = config.y();
         } else {
             x = 20;
-            y = 20;
+            y = 40;
         }
         createControllers(context, x, y, tab);
     }

@@ -31,7 +31,7 @@ import controlP5.ControlListener;
 import controlP5.Controller;
 import controlP5.Slider;
 
-public class IntegerRangeBuilder implements GUIElementBuilder {
+public class IntRangeBuilder implements GUIElementBuilder {
 
     protected static Slider createSlider(GUIManager gui, String id, int min,
             int max, int curr, Vec2D pos, String label, ControlListener listener) {

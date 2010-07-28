@@ -35,8 +35,6 @@ public @interface GUIElement {
 
     public String label() default NO_LABEL;
 
-    public GUIType type() default GUIType.DEFAULT;
-
     public int x() default -1;
 
     public int y() default -1;
