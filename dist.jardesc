@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="MacRoman" standalone="no"?>
 <jardesc>
-    <jar path="controlp5builder/dist/cp5utils.jar"/>
+    <jar path="cp5magic/dist/cp5utils.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/controlp5builder/dist.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
