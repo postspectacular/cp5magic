@@ -33,8 +33,8 @@ import controlP5.Slider;
 
 public class FloatRangeBuilder implements GUIElementBuilder {
 
-    protected static Slider createSlider(GUIManager gui, String id,
-            float min, float max, float curr, Vec2D pos, String label,
+    protected static Slider createSlider(GUIManager gui, String id, float min,
+            float max, float curr, Vec2D pos, String label,
             ControlListener listener) {
         Slider s =
                 gui.getGUI().addSlider(id, min, max, curr, (int) pos.x,

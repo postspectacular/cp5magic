@@ -45,7 +45,13 @@ public class FloatRangeMinMaxBuilder extends FloatRangeBuilder implements
                         pos, "min " + label, new ControlListener() {
 
                             public void controlEvent(ControlEvent e) {
-                                range.min = e.value();
+                                float val = e.value();
+                                if (val <= range.max) {
+                                    range.min = val;
+                                    e.controller().setValueLabel("" + val);
+                                } else {
+                                    e.controller().changeValue(range.max);
+                                }
                             }
                         });
         controllers.add(s);
@@ -54,7 +60,13 @@ public class FloatRangeMinMaxBuilder extends FloatRangeBuilder implements
                         pos.add(200, 0), "max " + label, new ControlListener() {
 
                             public void controlEvent(ControlEvent e) {
-                                range.max = e.value();
+                                float val = e.value();
+                                if (val >= range.min) {
+                                    range.max = val;
+                                    e.controller().setValueLabel("" + val);
+                                } else {
+                                    e.controller().changeValue(range.min);
+                                }
                             }
                         });
         controllers.add(s);

@@ -70,12 +70,13 @@ public class IntRangeBuilder implements GUIElementBuilder {
 
                                 public void controlEvent(ControlEvent e) {
                                     try {
+                                        int val = (int) e.value();
                                         if (isRange) {
-                                            range.setCurrent((int) e.value());
+                                            range.setCurrent(val);
                                         } else {
-                                            field.setInt(context,
-                                                    (int) e.value());
+                                            field.setInt(context, val);
                                         }
+                                        e.controller().setValueLabel("" + val);
                                     } catch (IllegalArgumentException e1) {
                                     } catch (IllegalAccessException e1) {
                                     }

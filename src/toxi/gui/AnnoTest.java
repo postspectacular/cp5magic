@@ -26,6 +26,7 @@ import java.util.List;
 
 import processing.core.PApplet;
 import toxi.util.datatypes.FloatRange;
+import toxi.util.datatypes.IntegerRange;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 
@@ -36,7 +37,7 @@ public class AnnoTest extends PApplet {
     }
 
     @GUIElement(label = "foo")
-    public FloatRange range = new FloatRange(0, 100);
+    public IntegerRange range = new IntegerRange(0, 100);
 
     @GUIElement(label = "enabled", x = 20, y = 300)
     public boolean isActive = true;
@@ -60,7 +61,7 @@ public class AnnoTest extends PApplet {
 
     @GUIElement(builder = FloatRangeBuilder.class)
     public FloatRange r2 = new FloatRange(-1, 1);
-    
+
     private GUIManager gui;
 
     public void doRestart(ControlEvent e) {
@@ -74,17 +75,11 @@ public class AnnoTest extends PApplet {
     private void initGUI() {
         ControlP5 cp5 = new ControlP5(this);
         gui = new GUIManager(cp5);
-        gui.addMapping(toxi.util.datatypes.FloatRange.class,
-                new FloatRangeMinMaxBuilder());
-        gui.createControllers(this);        
+        gui.createControllers(this);
         gui.addListenerFor("isActive", "toggleActive", this);
         gui.addListenerFor("btRestart", "doRestart", this);
     }
 
-    public void toggleActive(ControlEvent e) {
-        e.controller().setLabel(e.value()>0 ? "enabled" : "disabled");
-    }
-    
     public void setup() {
         size(400, 400);
         options.add("png");
@@ -93,5 +88,9 @@ public class AnnoTest extends PApplet {
         hash.add(23);
         hash.add(42);
         initGUI();
+    }
+
+    public void toggleActive(ControlEvent e) {
+        e.controller().setLabel(e.value() > 0 ? "enabled" : "disabled");
     }
 }

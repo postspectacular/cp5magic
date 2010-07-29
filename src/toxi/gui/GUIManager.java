@@ -26,6 +26,7 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import toxi.geom.Vec2D;
 import toxi.util.datatypes.FloatRange;
@@ -34,9 +35,11 @@ import controlP5.ControlEvent;
 import controlP5.ControlListener;
 import controlP5.ControlP5;
 import controlP5.Controller;
-import controlP5.Tab;
 
 public class GUIManager {
+
+    public static final Logger logger = Logger.getLogger(GUIManager.class
+            .getName());
 
     private ControlP5 gui;
     private Vec2D currPos;
@@ -48,9 +51,9 @@ public class GUIManager {
             new HashMap<Class<?>, GUIElementBuilder>();
 
     public GUIManager(ControlP5 gui) {
-        this(gui,true);
+        this(gui, true);
     }
-    
+
     public GUIManager(ControlP5 gui, boolean useDefaults) {
         this.gui = gui;
         if (useDefaults) {
@@ -100,7 +103,7 @@ public class GUIManager {
         builders.put(c, builder);
     }
 
-    public void createControllers(Object context, int x, int y, Tab tab) {
+    public void createControllers(Object context, int x, int y, String tab) {
         this.currPos = new Vec2D(x, y);
         try {
             for (Field f : context.getClass().getFields()) {
@@ -113,7 +116,7 @@ public class GUIManager {
                     } else {
                         builder = getMappingForType(type);
                     }
-                    System.out.println(type+": "+builder);
+                    System.out.println(type + ": " + builder);
                     if (builder != null) {
                         String label =
                                 !a.label().equals(GUIElement.NO_LABEL) ? a
@@ -124,7 +127,7 @@ public class GUIManager {
                                         f.getName(), label, this);
                         for (Controller c : items) {
                             if (tab != null) {
-                                c.setTab(tab.name());
+                                c.setTab(tab);
                             }
                             registerController(c.name(), c);
                         }
@@ -148,8 +151,8 @@ public class GUIManager {
     public void createControllers(Object context) {
         createControllers(context, null);
     }
-    
-    public void createControllers(Object context, Tab tab) {
+
+    public void createControllers(Object context, String tab) {
         int x, y;
         GUIConfiguration config =
                 context.getClass().getAnnotation(GUIConfiguration.class);

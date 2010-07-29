@@ -25,14 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import toxi.geom.Vec2D;
-import toxi.util.datatypes.FloatRange;
 import toxi.util.datatypes.IntegerRange;
 import controlP5.ControlEvent;
 import controlP5.ControlListener;
 import controlP5.Controller;
 import controlP5.Slider;
 
-public class IntRangeMinMaxBuilder extends FloatRangeBuilder implements
+public class IntRangeMinMaxBuilder extends IntRangeBuilder implements
         GUIElementBuilder {
 
     public List<Controller> createElementsFor(final Object context,
@@ -46,7 +45,13 @@ public class IntRangeMinMaxBuilder extends FloatRangeBuilder implements
                         pos, "min " + label, new ControlListener() {
 
                             public void controlEvent(ControlEvent e) {
-                                range.min = (int)e.value();
+                                int val = (int) e.value();
+                                if (val <= range.max) {
+                                    range.min = val;
+                                    e.controller().setValueLabel("" + val);
+                                } else {
+                                    e.controller().changeValue(range.max);
+                                }
                             }
                         });
         controllers.add(s);
@@ -55,7 +60,13 @@ public class IntRangeMinMaxBuilder extends FloatRangeBuilder implements
                         pos.add(200, 0), "max " + label, new ControlListener() {
 
                             public void controlEvent(ControlEvent e) {
-                                range.max = (int)e.value();
+                                int val = (int) e.value();
+                                if (val >= range.min) {
+                                    range.max = val;
+                                    e.controller().setValueLabel("" + val);
+                                } else {
+                                    e.controller().changeValue(range.min);
+                                }
                             }
                         });
         controllers.add(s);
@@ -66,5 +77,4 @@ public class IntRangeMinMaxBuilder extends FloatRangeBuilder implements
     public int getMinSpacing() {
         return 20;
     }
-
 }
