@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="MacRoman" standalone="no"?>
 <jardesc>
-    <jar path="cp5magic/dist/cp5utils.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/controlp5builder/dist.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <jar path="cp5magic/cp5magic.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/cp5magic/dist.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
@@ -11,17 +11,17 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{FloatRangeBuilder.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{ButtonBuilder.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{Range.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIElement.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIType.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIElementBuilder.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIController.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{GUIConfiguration.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{CheckboxBuilder.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{RadioBuilder.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{IntegerRangeBuilder.java"/>
-        <javaElement handleIdentifier="=controlp5builder/src&lt;toxi.controlp5{FloatRangeMinMaxBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{IntRangeMinMaxBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{RadioBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{Range.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIElement.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIManager.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{FloatRangeMinMaxBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{ButtonBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{FloatRangeBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{CheckboxBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIConfiguration.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{IntRangeBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIElementBuilder.java"/>
     </selectedElements>
 </jardesc>
