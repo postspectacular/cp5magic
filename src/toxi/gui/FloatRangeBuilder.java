@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import toxi.geom.Vec2D;
+import toxi.math.MathUtils;
 import toxi.util.datatypes.FloatRange;
 import controlP5.ControlEvent;
 import controlP5.ControlListener;
@@ -45,8 +46,8 @@ public class FloatRangeBuilder implements GUIElementBuilder {
     }
 
     public List<Controller> createElementsFor(final Object context,
-            final Field field, GUIElement anno, Vec2D pos, String id,
-            String label, GUIManager gui) throws IllegalArgumentException,
+            final Field field, Vec2D pos, String id, String label,
+            GUIManager gui) throws IllegalArgumentException,
             IllegalAccessException {
         List<Controller> controllers = new ArrayList<Controller>(1);
         FloatRange r = null;
@@ -55,8 +56,11 @@ public class FloatRangeBuilder implements GUIElementBuilder {
             Range ra = field.getAnnotation(Range.class);
             if (ra != null) {
                 r = new FloatRange(ra.min(), ra.max());
-                r.setCurrent(field.getFloat(context));
+                r.setCurrent(MathUtils.clip(field.getFloat(context), r.min,
+                        r.max));
                 singleValue = true;
+            } else {
+                logger.warning("missing @Range for fieldID: " + id);
             }
         } else {
             r = (FloatRange) field.get(context);

@@ -33,8 +33,8 @@ import controlP5.Toggle;
 public class CheckboxBuilder implements GUIElementBuilder {
 
     public List<Controller> createElementsFor(final Object context,
-            final Field field, GUIElement anno, Vec2D pos, String id,
-            String label, GUIManager gui) throws IllegalArgumentException,
+            final Field field, Vec2D pos, String id, String label,
+            GUIManager gui) throws IllegalArgumentException,
             IllegalAccessException {
         boolean state = field.getBoolean(context);
         Toggle ctrl =

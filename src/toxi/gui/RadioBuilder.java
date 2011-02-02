@@ -35,7 +35,7 @@ public class RadioBuilder implements GUIElementBuilder {
     private int itemCount;
 
     public List<Controller> createElementsFor(Object context, Field field,
-            GUIElement anno, Vec2D pos, String id, String label, GUIManager gui)
+            Vec2D pos, String id, String label, GUIManager gui)
             throws IllegalArgumentException, IllegalAccessException {
         Radio r = gui.getGUI().addRadio(id, (int) pos.x, (int) pos.y);
         r.setBroadcast(false);

@@ -22,15 +22,37 @@ package toxi.gui;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.logging.Logger;
 
 import toxi.geom.Vec2D;
 import controlP5.Controller;
 
 public interface GUIElementBuilder {
 
+    public static final Logger logger = Logger
+            .getLogger(GUIElementBuilder.class.getName());
+
+    /**
+     * @param context
+     *            the instance the variable to be controlled is belonging to
+     * @param field
+     *            reference to the actual variable field within the context
+     *            object
+     * @param pos
+     *            screen position for the controller
+     * @param id
+     *            controller ID
+     * @param label
+     *            controller label
+     * @param gui
+     *            ControlP5 parent instance
+     * @return
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException
+     */
     public List<Controller> createElementsFor(final Object context,
-            final Field field, GUIElement anno, Vec2D pos, String id,
-            String label, GUIManager gui) throws IllegalArgumentException,
+            final Field field, Vec2D pos, String id, String label,
+            GUIManager gui) throws IllegalArgumentException,
             IllegalAccessException;
 
     public int getMinSpacing();

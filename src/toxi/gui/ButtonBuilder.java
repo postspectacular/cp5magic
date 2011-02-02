@@ -30,8 +30,8 @@ import controlP5.Controller;
 public class ButtonBuilder implements GUIElementBuilder {
 
     public List<Controller> createElementsFor(final Object context,
-            final Field field, GUIElement anno, Vec2D pos, String id,
-            String label, GUIManager gui) throws IllegalArgumentException,
+            final Field field, Vec2D pos, String id, String label,
+            GUIManager gui) throws IllegalArgumentException,
             IllegalAccessException {
         int buttonID;
         if (field.get(context).getClass() == String.class) {

@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import processing.core.PApplet;
+import toxi.geom.Vec3D;
 import toxi.util.datatypes.FloatRange;
 import toxi.util.datatypes.IntegerRange;
 import controlP5.ControlEvent;
@@ -61,6 +62,10 @@ public class AnnoTest extends PApplet {
 
     @GUIElement(builder = FloatRangeBuilder.class)
     public FloatRange r2 = new FloatRange(-1, 1);
+
+    @GUIElement(label = "vector")
+    @FieldSelector(fields = "x,z")
+    public Vec3D pos = new Vec3D();
 
     private GUIManager gui;
 

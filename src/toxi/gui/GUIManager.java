@@ -25,7 +25,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import toxi.geom.Vec2D;
@@ -40,6 +42,33 @@ public class GUIManager {
 
     public static final Logger logger = Logger.getLogger(GUIManager.class
             .getName());
+
+    /**
+     * Attempts to retrieve {@link Field} references from the given context
+     * object and a list of comma-separated field names.
+     * 
+     * @param context
+     *            object to retrieve fields from
+     * @param fieldNames
+     *            list of field names
+     * @return list of field
+     */
+    public static List<Field> getSelectedFieldsIn(Object context,
+            String fieldNames) {
+        List<Field> fields = new LinkedList<Field>();
+        StringTokenizer st = new StringTokenizer(fieldNames, ",");
+        while (st.hasMoreTokens()) {
+            String id = st.nextToken();
+            try {
+                Field f = context.getClass().getField(id);
+                fields.add(f);
+            } catch (Exception e) {
+                logger.warning("can't access/find field: " + id
+                        + " in context: " + context.getClass().getName());
+            }
+        }
+        return fields;
+    }
 
     private ControlP5 gui;
     private Vec2D currPos;
@@ -103,27 +132,31 @@ public class GUIManager {
         builders.put(c, builder);
     }
 
+    public void createControllers(Object context) {
+        createControllers(context, null);
+    }
+
     public void createControllers(Object context, int x, int y, String tab) {
         this.currPos = new Vec2D(x, y);
         try {
             for (Field f : context.getClass().getFields()) {
                 if (f.isAnnotationPresent(GUIElement.class)) {
-                    Class<?> type = f.get(context).getClass();
                     GUIElement a = f.getAnnotation(GUIElement.class);
+                    Class<?> type = f.get(context).getClass();
                     GUIElementBuilder builder = null;
                     if (a.builder() != GUIElementBuilder.class) {
                         builder = a.builder().newInstance();
                     } else {
                         builder = getMappingForType(type);
                     }
-                    System.out.println(type + ": " + builder);
+                    // logger.info(type + ": " + builder);
                     if (builder != null) {
                         String label =
                                 !a.label().equals(GUIElement.NO_LABEL) ? a
                                         .label() : f.getName();
                         Vec2D pos = getPositionFor(a);
                         List<Controller> items =
-                                builder.createElementsFor(context, f, a, pos,
+                                builder.createElementsFor(context, f, pos,
                                         f.getName(), label, this);
                         for (Controller c : items) {
                             if (tab != null) {
@@ -135,7 +168,7 @@ public class GUIManager {
                             currPos.y += builder.getMinSpacing();
                         }
                     } else {
-                        System.out.println("no mapping found for: " + type);
+                        logger.info("no mapping found for: " + type);
                     }
                 }
             }
@@ -146,10 +179,6 @@ public class GUIManager {
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
-    }
-
-    public void createControllers(Object context) {
-        createControllers(context, null);
     }
 
     public void createControllers(Object context, String tab) {

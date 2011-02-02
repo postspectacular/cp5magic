@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import toxi.geom.Vec2D;
+import toxi.math.MathUtils;
 import toxi.util.datatypes.IntegerRange;
 import controlP5.ControlEvent;
 import controlP5.ControlListener;
@@ -44,8 +45,8 @@ public class IntRangeBuilder implements GUIElementBuilder {
     }
 
     public List<Controller> createElementsFor(final Object context,
-            final Field field, GUIElement anno, Vec2D pos, String id,
-            String label, GUIManager gui) throws IllegalArgumentException,
+            final Field field, Vec2D pos, String id, String label,
+            GUIManager gui) throws IllegalArgumentException,
             IllegalAccessException {
         List<Controller> controllers = new ArrayList<Controller>(1);
         IntegerRange r = null;
@@ -54,7 +55,7 @@ public class IntRangeBuilder implements GUIElementBuilder {
             Range ra = field.getAnnotation(Range.class);
             if (ra != null) {
                 r = new IntegerRange((int) ra.min(), (int) ra.max());
-                r.setCurrent(field.getInt(context));
+                r.setCurrent(MathUtils.clip(field.getInt(context), r.min, r.max));
                 singleValue = true;
             }
         } else {

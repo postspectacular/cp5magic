@@ -34,9 +34,10 @@ import controlP5.Slider;
 public class IntRangeMinMaxBuilder extends IntRangeBuilder implements
         GUIElementBuilder {
 
+    @Override
     public List<Controller> createElementsFor(final Object context,
-            final Field field, GUIElement anno, Vec2D pos, String id,
-            String label, GUIManager gui) throws IllegalArgumentException,
+            final Field field, Vec2D pos, String id, String label,
+            GUIManager gui) throws IllegalArgumentException,
             IllegalAccessException {
         List<Controller> controllers = new ArrayList<Controller>(2);
         final IntegerRange range = (IntegerRange) field.get(context);
