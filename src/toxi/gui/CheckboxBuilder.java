@@ -56,8 +56,8 @@ public class CheckboxBuilder implements GUIElementBuilder {
         return controllers;
     }
 
-    public int getMinSpacing() {
-        return 40;
+    public Vec2D getMinSpacing() {
+        return new Vec2D(120, 40);
     }
 
 }

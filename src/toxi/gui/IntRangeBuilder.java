@@ -44,6 +44,8 @@ public class IntRangeBuilder implements GUIElementBuilder {
         return s;
     }
 
+    public IntegerRange defaultRange = new IntegerRange(0, 100);
+
     public List<Controller> createElementsFor(final Object context,
             final Field field, Vec2D pos, String id, String label,
             GUIManager gui) throws IllegalArgumentException,
@@ -51,13 +53,18 @@ public class IntRangeBuilder implements GUIElementBuilder {
         List<Controller> controllers = new ArrayList<Controller>(1);
         IntegerRange r = null;
         boolean singleValue = false;
-        if (field.get(context).getClass() == Integer.class) {
+        final Class<? extends Object> type = field.get(context).getClass();
+        if (type == Integer.class) {
             Range ra = field.getAnnotation(Range.class);
             if (ra != null) {
                 r = new IntegerRange((int) ra.min(), (int) ra.max());
-                r.setCurrent(MathUtils.clip(field.getInt(context), r.min, r.max));
-                singleValue = true;
+            } else {
+                logger.warning("missing @Range for fieldID: " + id
+                        + ", using default...");
+                r = defaultRange.copy();
             }
+            r.setCurrent(MathUtils.clip(field.getInt(context), r.min, r.max));
+            singleValue = true;
         } else {
             r = (IntegerRange) field.get(context);
         }
@@ -88,7 +95,7 @@ public class IntRangeBuilder implements GUIElementBuilder {
         return controllers;
     }
 
-    public int getMinSpacing() {
-        return 20;
+    public Vec2D getMinSpacing() {
+        return new Vec2D(200, 20);
     }
 }

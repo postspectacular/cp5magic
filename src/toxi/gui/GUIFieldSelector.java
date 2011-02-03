@@ -27,9 +27,11 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface FieldSelector {
+public @interface GUIFieldSelector {
 
-    public static final String EMPTY = "<empty>";
+    public static final String EMPTY = "";
 
     public String fields() default EMPTY;
+
+    public boolean horizontal() default true;
 }

@@ -49,8 +49,8 @@ public class ButtonBuilder implements GUIElementBuilder {
         return controllers;
     }
 
-    public int getMinSpacing() {
-        return 20;
+    public Vec2D getMinSpacing() {
+        return new Vec2D(120, 20);
     }
 
 }

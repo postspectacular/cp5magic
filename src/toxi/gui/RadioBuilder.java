@@ -51,8 +51,8 @@ public class RadioBuilder implements GUIElementBuilder {
         return controllers;
     }
 
-    public int getMinSpacing() {
-        return itemCount * 16;
+    public Vec2D getMinSpacing() {
+        return new Vec2D(100, (itemCount + 1) * 16);
     }
 
 }

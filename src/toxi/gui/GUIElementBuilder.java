@@ -45,7 +45,7 @@ public interface GUIElementBuilder {
      * @param label
      *            controller label
      * @param gui
-     *            ControlP5 parent instance
+     *            GUIManager instance
      * @return
      * @throws IllegalArgumentException
      * @throws IllegalAccessException
@@ -55,5 +55,5 @@ public interface GUIElementBuilder {
             GUIManager gui) throws IllegalArgumentException,
             IllegalAccessException;
 
-    public int getMinSpacing();
+    public Vec2D getMinSpacing();
 }

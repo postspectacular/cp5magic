@@ -33,6 +33,13 @@ import controlP5.ControlP5;
 
 public class AnnoTest extends PApplet {
 
+    class DummyContext {
+
+        @GUIElement(label = "vector")
+        @GUIFieldSelector(fields = "x,z", horizontal = true)
+        public Vec3D pos = new Vec3D();
+    }
+
     public static void main(String[] args) {
         PApplet.main(new String[] { "toxi.gui.AnnoTest" });
     }
@@ -63,9 +70,14 @@ public class AnnoTest extends PApplet {
     @GUIElement(builder = FloatRangeBuilder.class)
     public FloatRange r2 = new FloatRange(-1, 1);
 
-    @GUIElement(label = "vector")
-    @FieldSelector(fields = "x,z")
-    public Vec3D pos = new Vec3D();
+    @GUISubContext
+    public DummyContext dummy = new DummyContext();
+
+    @GUISubContext
+    public DummyContext dummy2 = new DummyContext();
+
+    @GUIFieldSelector(fields = "y", horizontal = true)
+    public Vec3D size = new Vec3D();
 
     private GUIManager gui;
 
@@ -75,6 +87,9 @@ public class AnnoTest extends PApplet {
 
     public void draw() {
         background(0);
+        fill(255, 255, 0);
+        ellipse(dummy.pos.x * width, dummy.pos.z * height, size.y * 50,
+                size.y * 50);
     }
 
     private void initGUI() {
@@ -86,7 +101,7 @@ public class AnnoTest extends PApplet {
     }
 
     public void setup() {
-        size(400, 400);
+        size(1024, 400);
         options.add("png");
         options.add("tga");
         options.add("jpg");

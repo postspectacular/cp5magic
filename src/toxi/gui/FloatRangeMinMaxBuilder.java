@@ -75,8 +75,7 @@ public class FloatRangeMinMaxBuilder extends FloatRangeBuilder implements
     }
 
     @Override
-    public int getMinSpacing() {
-        return 20;
+    public Vec2D getMinSpacing() {
+        return new Vec2D(400, 20);
     }
-
 }

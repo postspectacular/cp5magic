@@ -140,9 +140,49 @@ public class GUIManager {
         this.currPos = new Vec2D(x, y);
         try {
             for (Field f : context.getClass().getFields()) {
-                if (f.isAnnotationPresent(GUIElement.class)) {
-                    GUIElement a = f.getAnnotation(GUIElement.class);
-                    Class<?> type = f.get(context).getClass();
+                GUIElement a = f.getAnnotation(GUIElement.class);
+                final Object subContext = f.get(context);
+                String label =
+                        a != null && !a.label().equals(GUIElement.NO_LABEL) ? a
+                                .label() : f.getName();
+                if (f.isAnnotationPresent(GUISubContext.class)) {
+                    Vec2D origin = currPos.copy();
+                    createControllers(subContext, (int) currPos.x,
+                            (int) currPos.y, tab);
+                    currPos.x = origin.x;
+                } else if (f.isAnnotationPresent(GUIFieldSelector.class)) {
+                    GUIFieldSelector fieldSel =
+                            f.getAnnotation(GUIFieldSelector.class);
+                    List<Field> fields =
+                            getSelectedFieldsIn(subContext, fieldSel.fields());
+                    Vec2D origin = currPos.copy();
+                    GUIElementBuilder builder = null;
+                    for (Field ff : fields) {
+                        Class<?> type = ff.get(subContext).getClass();
+                        builder = getMappingForType(type);
+                        if (builder != null) {
+                            List<Controller> items =
+                                    builder.createElementsFor(subContext, ff,
+                                            currPos, ff.getName(), label + " ("
+                                                    + ff.getName() + ")", this);
+                            for (Controller c : items) {
+                                if (tab != null) {
+                                    c.setTab(tab);
+                                }
+                                registerController(c.name(), c);
+                            }
+                            if (fieldSel.horizontal()) {
+                                currPos.x += builder.getMinSpacing().x;
+                            } else {
+                                currPos.y += builder.getMinSpacing().y;
+                            }
+                        }
+                    }
+                    if (fieldSel.horizontal() && builder != null) {
+                        currPos.set(origin.add(0, builder.getMinSpacing().y));
+                    }
+                } else if (a != null) {
+                    Class<?> type = subContext.getClass();
                     GUIElementBuilder builder = null;
                     if (a.builder() != GUIElementBuilder.class) {
                         builder = a.builder().newInstance();
@@ -151,9 +191,6 @@ public class GUIManager {
                     }
                     // logger.info(type + ": " + builder);
                     if (builder != null) {
-                        String label =
-                                !a.label().equals(GUIElement.NO_LABEL) ? a
-                                        .label() : f.getName();
                         Vec2D pos = getPositionFor(a);
                         List<Controller> items =
                                 builder.createElementsFor(context, f, pos,
@@ -165,7 +202,7 @@ public class GUIManager {
                             registerController(c.name(), c);
                         }
                         if (a.y() == -1) {
-                            currPos.y += builder.getMinSpacing();
+                            currPos.y += builder.getMinSpacing().y;
                         }
                     } else {
                         logger.info("no mapping found for: " + type);
