@@ -11,17 +11,19 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{IntRangeMinMaxBuilder.java"/>
         <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{RadioBuilder.java"/>
-        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{Range.java"/>
         <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIElement.java"/>
-        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIManager.java"/>
-        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{FloatRangeMinMaxBuilder.java"/>
-        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{ButtonBuilder.java"/>
-        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{FloatRangeBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{Range.java"/>
         <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{CheckboxBuilder.java"/>
         <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIConfiguration.java"/>
-        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{IntRangeBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{IntRangeMinMaxBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{FloatRangeMinMaxBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIManager.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIFieldSelector.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{ButtonBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{FloatRangeBuilder.java"/>
         <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUIElementBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{IntRangeBuilder.java"/>
+        <javaElement handleIdentifier="=cp5magic/src&lt;toxi.gui{GUISubContext.java"/>
     </selectedElements>
 </jardesc>
