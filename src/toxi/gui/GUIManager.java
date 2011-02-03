@@ -195,7 +195,7 @@ public class GUIManager {
                         Vec2D pos = getPositionFor(a);
                         List<Controller> items =
                                 builder.createElementsFor(context, f, pos,
-                                        getUUID(), label, this);
+                                        f.getName(), label, this);
                         for (Controller c : items) {
                             if (tab != null) {
                                 c.setTab(tab);
