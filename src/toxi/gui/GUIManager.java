@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import toxi.geom.Vec2D;
@@ -163,7 +164,7 @@ public class GUIManager {
                         if (builder != null) {
                             List<Controller> items =
                                     builder.createElementsFor(subContext, ff,
-                                            currPos, ff.getName(), label + " ("
+                                            currPos, getUUID(), label + " ("
                                                     + ff.getName() + ")", this);
                             for (Controller c : items) {
                                 if (tab != null) {
@@ -194,7 +195,7 @@ public class GUIManager {
                         Vec2D pos = getPositionFor(a);
                         List<Controller> items =
                                 builder.createElementsFor(context, f, pos,
-                                        f.getName(), label, this);
+                                        getUUID(), label, this);
                         for (Controller c : items) {
                             if (tab != null) {
                                 c.setTab(tab);
@@ -268,6 +269,10 @@ public class GUIManager {
         float x = a.x() != -1 ? a.x() : currPos.x;
         float y = a.y() != -1 ? a.y() : currPos.y;
         return new Vec2D(x, y);
+    }
+
+    protected String getUUID() {
+        return UUID.randomUUID().toString();
     }
 
     protected void registerController(String id, Controller ctrl) {
